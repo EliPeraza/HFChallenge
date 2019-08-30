@@ -8,50 +8,46 @@
 
 import Foundation
 
-/*=========================================First Challenge======================================*/
-func findDifference(array: [Int], k: Int) -> Int {
-  var tracker = Int()
-  var emptyDictionary = [Int: Int]()
-  for number in array {
-    let x = number + k
-    if !emptyDictionary.keys.contains(number) {
-      emptyDictionary[number] = x
-    }
+/*=====================================First Challenge Refactored ====================================*/
+func findPairsThatMeetDifference(_ array: [Int], difference: Int) -> Int {
+  var counter = Int()
+  var trackingDictionary = [Int:Int]()
+  for currentNumber in array {
+    let numberToFind = currentNumber + difference
+    trackingDictionary[currentNumber] = numberToFind
   }
-  for number in array {
-    for (_,value) in emptyDictionary {
-      if number == value {
-        tracker += 1
+  for currentNum in array {
+    for value in trackingDictionary.values {
+      if value == currentNum {
+        counter += 1
       }
     }
   }
-  return tracker
+  return counter
 }
 
 let array = [1,2,-1,3,5,7,8,9,11]
-let k = 10
+let difference = 10
 //output: 2
-print(findDifference(array: array, k: k))
+print(findPairsThatMeetDifference(array, difference: difference))
 
-let secondArrayTest = [-2,0,1,4,3,19,5,-1,7,5]
-let y = 4
-//output: 5
-print(findDifference(array: secondArrayTest, k: y))
-
-//refactored first challenge
+let secondArray = [-2,1,4,3,19,5,-1,7,5]
+let secondDifference = 4
+//output: 4
+print(findPairsThatMeetDifference(secondArray, difference: secondDifference))
 
 /*=========================================Second Challenge======================================*/
 func continousCharacterCount(_ input: String) -> String {
-  var trackerCharacterCount = String()
+  var characterCountTracker = String()
   var counter = 0
-  let onlyLetter = CharacterSet.letters
-  let cleanedString = String(input.unicodeScalars.filter{onlyLetter.contains($0)})
+  let onlyLetters = CharacterSet.letters
+  let cleanedString = String(input.unicodeScalars.filter{onlyLetters.contains($0)})
   guard var currentCharacter = cleanedString.first else {
     return "Please enter a valid input, this is an empty string."
   }
-  for character in input where character.isLetter {
+  for character in cleanedString {
     if character != currentCharacter {
-      trackerCharacterCount.append("\(currentCharacter)\(counter)")
+      characterCountTracker.append("\(currentCharacter)\(counter)")
       currentCharacter = character
       counter = 1
     } else {
@@ -59,9 +55,9 @@ func continousCharacterCount(_ input: String) -> String {
     }
   }
   if let char = input.last, currentCharacter == char {
-    trackerCharacterCount.append("\(currentCharacter)\(counter)")
+    characterCountTracker.append("\(currentCharacter)\(counter)")
   }
-  return trackerCharacterCount
+  return characterCountTracker
 }
 
 let input = "aabbbaccaad"
@@ -79,6 +75,3 @@ print(continousCharacterCount(input3))
 let input4 = ""
 //output: "Please enter a valid input, this is an empty string."
 print(continousCharacterCount(input4))
-
-
-
