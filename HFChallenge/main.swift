@@ -9,7 +9,7 @@
 import Foundation
 
 /*=====================================First Challenge Refactored ====================================*/
-func findPairsThatMeetDifference(_ array: [Int], difference: Int) -> Int {
+func findPairsThatMeetDifference(_ array: [Int],_ difference: Int) -> Int {
   var counter = Int()
   var trackingDictionary = [Int:Int]()
   for currentNumber in array {
@@ -29,12 +29,12 @@ func findPairsThatMeetDifference(_ array: [Int], difference: Int) -> Int {
 let array = [1,2,-1,3,5,7,8,9,11]
 let difference = 10
 //output: 2
-print(findPairsThatMeetDifference(array, difference: difference))
+print(findPairsThatMeetDifference(array, difference))
 
 let secondArray = [-2,1,4,3,19,5,-1,7,5]
 let secondDifference = 4
 //output: 4
-print(findPairsThatMeetDifference(secondArray, difference: secondDifference))
+print(findPairsThatMeetDifference(secondArray, secondDifference))
 
 /*=========================================Second Challenge======================================*/
 func continousCharacterCount(_ input: String) -> String {
